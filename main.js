@@ -7,7 +7,6 @@ firebase.initializeApp({
   messagingSenderId: "763338172558"
 });
 
-firebase.initializeApp(config);
 const db = firebase.database()
 
 console.log('TEST TEST')
@@ -52,8 +51,6 @@ function addsubject(courses){
 }
 addReview({course:'human condition', review:'very good'})
 addReview({course:'biology', review:'very shitty'})
-
-
 
 
 $(() => {
