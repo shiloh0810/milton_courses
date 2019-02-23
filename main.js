@@ -10,6 +10,8 @@ var config = {
 firebase.initializeApp(config);
 const db = firebase.database()
 
+console.log('TEST TEST')
+
 function addSubjectCourse(data){
   const ref = db.ref('subjects/'+data.subject)
   ref.once('value').then(function(snapshot){
@@ -90,6 +92,8 @@ function addReview(data){
   })
 }
 addReview({course:'human condition', review:'very good'})
+addReview({course:'biology', review:'very shitty'})
+
 
 //add callback here
 function getCourses(){
