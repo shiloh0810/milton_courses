@@ -5,9 +5,13 @@ var config = {
   projectId: "miltoncourses",
   storageBucket: "miltoncourses.appspot.com",
   messagingSenderId: "763338172558"
+<<<<<<< HEAD
 };
 
 firebase.initializeApp(config);
+=======
+});
+>>>>>>> 69ad2d439ef1f2131b2c22ff78cc44ea41983ce6
 const db = firebase.database()
 
 function addSubjectCourse(data){
@@ -24,6 +28,7 @@ function addSubjectCourse(data){
   })
 }
 
+<<<<<<< HEAD
 addSubjectCourse({subject:'math', course:'precalc', id:'MPR3'});
 addSubjectCourse({subject:'math', course:'calc', id:'CLC2'});
 addSubjectCourse({subject:'math', course:'group', id:'asdf'});
@@ -41,20 +46,51 @@ addSubjectCourse({subject:'arts', course:'sculpture', id:'CLC2'});
 addSubjectCourse({subject:'arts', course:'photography', id:'asdf'});
 
 
+=======
+>>>>>>> 69ad2d439ef1f2131b2c22ff78cc44ea41983ce6
 function addCourse(data){
   const ref = db.ref('courses')
   ref.once('value').then(function(snapshot){
     if(snapshot.val() == null){
       ref.child(data.course).child('info').set({rating:data.rating, teacher:data.teacher, credit:data.credit, info:data.info})
+<<<<<<< HEAD
     }
     else{
       const updates = {}
       updates['/' + data.course] = {rating:data.rating, teacher:data.teacher, credit:data.credit, infos:data.info}
       ref.update(updates)
+=======
+      console.log("Bye")
+    }
+    else{
+      const updates = {}
+      updates['/' + data.course + '/info'] = {rating:data.rating, teacher:data.teacher, credit:data.credit, infos:data.info}
+      ref.update(updates)
+      console.log("Bye2")
+>>>>>>> 69ad2d439ef1f2131b2c22ff78cc44ea41983ce6
     }
   })
 }
 
+<<<<<<< HEAD
+=======
+addSubjectCourse({subject:'math', course:'precalc', id:'MPR3'});
+addSubjectCourse({subject:'math', course:'calc', id:'CLC2'});
+addSubjectCourse({subject:'math', course:'group', id:'asdf'});
+addSubjectCourse({subject:'english', course:'performing', id:'adfad'});
+addSubjectCourse({subject:'english', course:'reading consciousness', id:'addf'});
+addSubjectCourse({subject:'english', course:'human condition', id:'asadfdf'});
+addSubjectCourse({subject:'science', course:'physics', id:'MPR3'});
+addSubjectCourse({subject:'science', course:'biology', id:'CLC2'});
+addSubjectCourse({subject:'science', course:'chemistry', id:'asdf'});
+addSubjectCourse({subject:'history', course:'ancient civilizations', id:'MPR3'});
+addSubjectCourse({subject:'history', course:'us history', id:'CLC2'});
+addSubjectCourse({subject:'history', course:'us in the modern world', id:'asdf'});
+addSubjectCourse({subject:'arts', course:'drawing', id:'MPR3'});
+addSubjectCourse({subject:'arts', course:'sculpture', id:'CLC2'});
+addSubjectCourse({subject:'arts', course:'photography', id:'asdf'});
+
+>>>>>>> 69ad2d439ef1f2131b2c22ff78cc44ea41983ce6
 addCourse({course:'Algebra 1 with Geometry', rating:null, teacher:'N/A', credit:1, info:'-'})
 addCourse({course:'Geometry', rating:null, teacher:'N/A', credit:1, info:'-'})
 addCourse({course:'Algebra 2', rating:null, teacher:'N/A', credit:1, info:'-'})
@@ -73,16 +109,23 @@ addCourse({course:'Multivariable Calculus', rating:null, teacher:'N/A', credit:1
 addCourse({course:'Abstract Algebra and Group Theory', rating:null, teacher:'N/A', credit:1, info:'-'})
 addCourse({course:'Advanced Topics in Mathematics', rating:null, teacher:'N/A', credit:1, info:'-'})
 addCourse({course:'Discrete Mathematics Seminar', rating:null, teacher:'N/A', credit:0.5, info:'-'})
+<<<<<<< HEAD
 addCourse({course:'Mathematics and Art', rating:null, teacher:'N/A', credit:0..5, info:'-'})
 
 
+=======
+addCourse({course:'Mathematics and Art', rating:null, teacher:'N/A', credit:0.5, info:'-'})
+>>>>>>> 69ad2d439ef1f2131b2c22ff78cc44ea41983ce6
 addCourse({course:'Computer Programming 1', rating:null, teacher:'N/A', credit:0.5, info:'-'})
 addCourse({course:'Computer Programming 2', rating:null, teacher:'N/A', credit:0.5, info:'-'})
 addCourse({course:'Computer Programming 2&3', rating:null, teacher:'N/A', credit:1, info:'-'})
 addCourse({course:'Computer Programming 3', rating:null, teacher:'N/A', credit:0.5, info:'-'})
 addCourse({course:'Computer Programming 4', rating:null, teacher:'N/A', credit:0.5, info:'-'})
 addCourse({course:'Applied Engineering & Design', rating:null, teacher:'N/A', credit:0.5, info:'-'})
+<<<<<<< HEAD
 
+=======
+>>>>>>> 69ad2d439ef1f2131b2c22ff78cc44ea41983ce6
 addCourse({course:'French 1', rating:null, teacher:'N/A', credit:1, info:'-'})
 addCourse({course:'French 1P', rating:null, teacher:'N/A', credit:1, info:'-'})
 addCourse({course:'French 2', rating:null, teacher:'N/A', credit:1, info:'-'})
@@ -92,6 +135,7 @@ addCourse({course:'French 3 (Honors)', rating:null, teacher:'N/A', credit:1, inf
 addCourse({course:'French 4', rating:null, teacher:'N/A', credit:1, info:'-'})
 addCourse({course:'French 4 (AP)', rating:null, teacher:'N/A', credit:1, info:'-'})
 addCourse({course:'French 5 (Honors): A Further Exploration of Literature', rating:null, teacher:'N/A', credit:1, info:'-'})
+<<<<<<< HEAD
 addCourse({course:'French 5: The Francophone World', rating:null, teacher:'N/A', credit:0.5, info:'-'})
 addCourse({course:'French 5: Twentieth-Century France Through Its Cinema', rating:null, teacher:'N/A', credit:0.5, info:'-'})
 addCourse({course:'French 6: Advanced Studies', rating:null, teacher:'N/A', credit:0.5, info:'-'})
@@ -212,6 +256,9 @@ addCourse({course:'Activism for Justice in a Digital World, rating:null, teacher
 
 
 
+=======
+addCourse({course:'French 5 (Honors): The Francophone World', rating:null, teacher:'N/A', credit:0.5, info:'-'})
+>>>>>>> 69ad2d439ef1f2131b2c22ff78cc44ea41983ce6
 addCourse({course:'precalc', rating:5, teacher:'precalc', credit:1, info:'testinfo'})
 addCourse({course:'calc', rating:5, teacher:'precalc', credit:1, info:'testinfo'})
 addCourse({course:'group', rating:5, teacher:'precalc', credit:1, info:'testinfo'})
@@ -228,7 +275,10 @@ addCourse({course:'drawing', rating:5, teacher:'precalc', credit:1, info:'testin
 addCourse({course:'sculpture', rating:5, teacher:'precalc', credit:1, info:'testinfo'})
 addCourse({course:'photography', rating:5, teacher:'precalc', credit:1, info:'testinfo'})
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 69ad2d439ef1f2131b2c22ff78cc44ea41983ce6
 function addReview(data){
   const ref = db.ref('courses/'+data.course+'/reviews')
   ref.once('value').then(function(snapshot){
@@ -243,12 +293,48 @@ function addReview(data){
 }
 addReview({course:'human condition', review:'very good'})
 
+<<<<<<< HEAD
+=======
+addReview({course:'human condition', review:'very good'})
+
+>>>>>>> 69ad2d439ef1f2131b2c22ff78cc44ea41983ce6
 //add callback here
 function getCourses(){
   const ref = db.ref('subjects')
   ref.once('value').then(function(snapshot){
     for (var key in snapshot.val()) {
       console.log(snapshot.val()[key])
+<<<<<<< HEAD
+=======
+    }
+    //Scallback(snapshot.val())
+  })
+}
+getCourses();
+function updateRating(rating, course){
+  const ref = db.ref('courses/'+course)
+  ref.once('value').then(function(snapshot){
+    if(snapshot.val().length == 0){
+      updates['/' + rating] = data.id;
+      ref.update(updates)
+    }
+    })
+}
+
+$(() => {
+  // Set up sidebar
+  $('#sidebarCollapse').on('click', function() {
+    $('#sidebar').toggleClass('active');
+    $(this).toggleClass('active');
+  });
+
+  getCourses((jsonPackage) => {
+    for (var subjectData in jsonPackage) {
+      var subjectElement = $("#" + subjectData);
+      for (classK in subjectData) {
+        subjectElement.append('<li><a href="#">' + classK + '</a></li>');
+      }
+>>>>>>> 69ad2d439ef1f2131b2c22ff78cc44ea41983ce6
     }
     //Scallback(snapshot.val())
   })
