@@ -7,7 +7,6 @@ firebase.initializeApp({
   messagingSenderId: "763338172558"
 });
 
-firebase.initializeApp(config);
 const db = firebase.database()
 
 function addSubjectCourse(data){
@@ -48,8 +47,6 @@ function addsubject(courses){
     }
   })
 }
-
-
 
 $(() => {
   // Set up sidebar
