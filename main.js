@@ -10,7 +10,7 @@ const db = firebase.database()
 
 function addSubjectCourse(data){
   const ref = db.ref('subjects/'+data.subject)
-  ref.once('value').then(function(snapshot){
+  ref.once('value').then(funcytion(snapshot){
     if(snapshot.val == null){
       ref.child(data.course).set(data.id)
     }
@@ -118,7 +118,7 @@ function addReview(data){
   })
 }
 
-addReview({course:'human condition', review:'very good'})
+addsReview({course:'human condition', review:'very good'})
 
 //add callback here
 function getCourses(){
@@ -131,15 +131,18 @@ function getCourses(){
   })
 }
 getCourses();
+
 function updateRating(rating, course){
-  const ref = db.ref('courses/'+course)
+  const ref = db.ref('courses/'+course+'/info')
   ref.once('value').then(function(snapshot){
+    console.log(snapshot.val())
     if(snapshot.val().length == 0){
-      updates['/' + rating] = data.id;
+      updates['/' + rating] = data.rating
       ref.update(updates)
     }
     })
 }
+updateRating(5,'Algebra 2')
 
 $(() => {
   // Set up sidebar
