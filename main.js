@@ -6,6 +6,7 @@ firebase.initializeApp({
   storageBucket: "miltoncourses.appspot.com",
   messagingSenderId: "763338172558"
 });
+
 const db = firebase.database()
 
 function addCourse(name, credit, subject, teacher, description) {
@@ -186,11 +187,6 @@ function addRating(id, rating){
     }
   })
 }
-addRating("sfldfk", 5)
-
-//addAllCourses();
-//addReview('testid', 'very good')
-
 
 function updateRating(rating, course){
   const ref = db.ref('courses/'+course+'/info')
