@@ -7,21 +7,8 @@ firebase.initializeApp({
   messagingSenderId: "763338172558"
 });
 
+firebase.initializeApp(config);
 const db = firebase.database()
-
-function deleteCourse(subject, course){
-  const ref = db.ref('subject/'+subject)
-  const updates = {}
-  updates['/' + course] = null;
-  ref.update(updates)
-}
-
-function deletecourse(course){
-  const ref = db.ref('subjects')
-  const updates = {}
-  updates['/' + course] = null;
-  ref.update(updates)
-}
 
 function addSubjectCourse(data){
   const ref = db.ref('subjects/'+data.subject)
@@ -53,10 +40,11 @@ function addsubject(courses){
   const ref = db.ref("subjects/"+courses.subject)
   ref.once('value').then(function(snapshot){
     if(snapshot.val() == null){
-      ref.child(courses.id).set({id:courses.rating, counter:1})
+      console.log('hello')
+      ref.child('0').set(data.review)
     }
     else{
-      const currentcounter = snapshot.val().counter
+      ref.child(snapshot.val().length).set(data.review)
     }
   })
 }
