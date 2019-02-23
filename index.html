@@ -18,39 +18,43 @@
       </div>
       <ul class="list-unstyled components">
         <li class="subject">
-          <a href="#artMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Art</a>
+          <a href="#art" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Art</a>
           <ul class="collapse list-unstyled" id="art">
           </ul>
         </li>
         <li class="subject">
-          <a href="#scienceMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Science</a>
+          <a href="#science" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Science</a>
           <ul class="collapse list-unstyled" id="science">
-
           </ul>
         </li>
         <li class="subject">
-          <a href="#mathMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Math</a>
+          <a href="#math" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Math</a>
           <ul class="collapse list-unstyled" id="math">
           </ul>
         </li>
         <li class="subject">
-          <a href="#englishMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">English</a>
+          <a href="#english" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">English</a>
           <ul class="collapse list-unstyled" id="english">
           </ul>
         </li>
         <li class="subject">
-          <a href="#historyMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">History</a>
+          <a href="#history" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">History</a>
           <ul class="collapse list-unstyled" id="history">
           </ul>
         </li>
         <li class="subject">
-          <a href="#programmingMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Programming</a>
+          <a href="#programming" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Programming</a>
           <ul class="collapse list-unstyled" id="programming">
           </ul>
         </li>
         <li class="subject">
-          <a href="#classicsMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Classics</a>
+          <a href="#classics" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Classics</a>
           <ul class="collapse list-unstyled" id="classics">
+          </ul>
+        </li>
+        <li class="subject">
+          <a href="#language" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Science</a>
+          <ul class="collapse list-unstyled" id="language">
           </ul>
         </li>
       </ul>
@@ -61,7 +65,7 @@
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <button type="button" id="sidebarCollapse" class="navbar-btn">
-            <span></span>
+            <span id="class"></span>
             <span></span>
             <span></span>
           </button>
@@ -71,23 +75,15 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
         </div>
       </nav>
-      <h2>Collapsible Sidebar Using Bootstrap 4</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <h2 id="className"></h2>
+      <p id="classDescription"></p>
+      <div class="form-group">
+        <label for="comment">Review:</label>
+        <textarea class="form-control" rows="5" id="comment"></textarea>
+      </div>
+      <button type="button" class="btn btn-info" id="hi">Submit</button>
       <div class="line"></div>
-      <h2>Lorem Ipsum Dolor</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      <div class="line"></div>
-      <h2>Lorem Ipsum Dolor</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      <div class="line"></div>
-      <h3>Lorem Ipsum Dolor</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p></p>
     </div>
   </div>
 
@@ -95,20 +91,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
-
-  </script>
-
-  <script type="text/javascript">
-
-    $(document).ready(function() {
-      console.log("Loading page");
-
-      $('#sidebarCollapse').on('click', function() {
-        $('#sidebar').toggleClass('active');
-        $(this).toggleClass('active');
-      });
-    });
-  </script>
 
   <script src="main.js"></script>
 </body>
