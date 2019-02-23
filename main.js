@@ -174,30 +174,50 @@ function addReview(id, review){
   })
 }
 
-function addRating(id, rating){
-  const ref = db.ref('ratings/'+id)
-  ref.once('value').then(function(snapshot){
-    if(snapshot.val() == null){
-      ref.child('rating').set(rating)
-      ref.child('numberOfRatings').set(1)
-    }
-    else{
-      ref.child('numberOfRatings').set(2)
-      ref.child('rating').set(rating+1)
-    }
+function getCourses(callback) {
+  const ref = db.ref('courses')
+  ref.once('value').then(function(snapshot) {
+    callback(snapshot.val())
+  })
+}
+
+function getCourse(cid, callback) {
+  const ref = db.ref('courses/' + cid)
+  ref.once('value').then(function(snapshot) {
+    callback(snapshot.val())
   })
 }
 
 function updateRating(rating, course){
-  const ref = db.ref('courses/'+course+'/info')
-  ref.child('0').set(data.review)
+  const ref = db.ref('courses/' + course)
   ref.once('value').then(function(snapshot){
     if(snapshot.val().length == 0){
       updates['/' + rating] = rating;
       ref.update(updates)
     }
-    else{
-
-    }
   })
 }
+
+$(() => {
+  // Set up sidebar
+  $('#sidebarCollapse').on('click', function() {
+    $('#sidebar').toggleClass('active');
+    $(this).toggleClass('active');
+  });
+
+  // Set up courses
+  getCourses((courses) => {
+    for (let cid in courses) {
+      const subjectElement = $(`#${courses[cid].subject}`);
+      const courseElement = $(`<li><a class="class-link" href="#${cid}">` + courses[cid].name + '</a></li>')
+      subjectElement.append(courseElement)
+    }
+
+    $('.class-link').click((e) => {
+      const cid = e.target.href.substring(e.target.href.lastIndexOf('#') + 1);
+      getCourse(cid, (course) => {
+        console.log(course.description)
+      })
+    })
+  });
+})
