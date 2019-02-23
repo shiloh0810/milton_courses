@@ -8,253 +8,200 @@ firebase.initializeApp({
 });
 const db = firebase.database()
 
-function addSubjectCourse(data){
-  const ref = db.ref('subjects/'+data.subject)
-  ref.once('value').then(function(snapshot){
-    if(snapshot.val == null){
-      ref.child(data.course).set(data.id)
-    }
-    else{
-      const updates = {}
-      updates['/' + data.course] = data.id;
-      ref.update(updates)
-    }
-  })
-}
-
-addSubjectCourse({subject:'math', course:'precalc', id:'MPR3'});
-addSubjectCourse({subject:'math', course:'calc', id:'CLC2'});
-addSubjectCourse({subject:'math', course:'group', id:'asdf'});
-addSubjectCourse({subject:'english', course:'performing', id:'adfad'});
-addSubjectCourse({subject:'english', course:'reading consciousness', id:'addf'});
-addSubjectCourse({subject:'english', course:'human condition', id:'asadfdf'});
-addSubjectCourse({subject:'science', course:'physics', id:'MPR3'});
-addSubjectCourse({subject:'science', course:'biology', id:'CLC2'});
-addSubjectCourse({subject:'science', course:'chemistry', id:'asdf'});
-addSubjectCourse({subject:'history', course:'ancient civilizations', id:'MPR3'});
-addSubjectCourse({subject:'history', course:'us history', id:'CLC2'});
-addSubjectCourse({subject:'history', course:'us in the modern world', id:'asdf'});
-addSubjectCourse({subject:'arts', course:'drawing', id:'MPR3'});
-addSubjectCourse({subject:'arts', course:'sculpture', id:'CLC2'});
-addSubjectCourse({subject:'arts', course:'photography', id:'asdf'});
-
-
-function addCourse(data){
+function addCourse(name, credit, subject, teacher, description) {
   const ref = db.ref('courses')
+  ref.push({
+    name: name,
+    subject: subject,
+    credit: credit,
+    teacher: teacher,
+    description: description
+  })
+}
+
+function addAllCourses() {
+  addCourse('Algebra 1 with Geometry', 1, 'math', 'unknown', 'unknown')
+  addCourse('Geometry', 1, 'math', 'unknown', 'unknown')
+  addCourse('Algebra 2', 1, 'math', 'unknown', 'unknown')
+  addCourse('Precalculus(Honors)', 1, 'math', 'unknown', 'unknown')
+  addCourse('Precalculus(Regular)', 1, 'math', 'unknown', 'unknown')
+  addCourse('Precalculus(Foundation)', 1, 'math', 'unknown', 'unknown')
+  addCourse('Calculus(Honors)', 1, 'math', 'unknown', 'unknown')
+  addCourse('Calculus(Regular)', 1, 'math', 'unknown', 'unknown')
+  addCourse('Calculus and Applied Economics (Honors)', 1, 'math', 'unknown', 'unknown')
+  addCourse('Calculus(Accelerated)', 1, 'math', 'unknown', 'unknown')
+  addCourse('Stats (Honors)', 1, 'math', 'unknown', 'unknown')
+  addCourse('Stats (Regular)', 1, 'math', 'unknown', 'unknown')
+  addCourse('Advanced Statistical Methods (Honors)', 1, 'math', 'unknown', 'unknown')
+  addCourse('Advanced Calculus and Mathematical Statistics Methods (Honors)', 1, 'math', 'unknown', 'unknown')
+  addCourse('Multivariable Calculus', 1, 'math', 'unknown', 'unknown')
+  addCourse('Abstract Algebra and Group Theory', 1, 'math', 'unknown', 'unknown')
+  addCourse('Advanced Topics in Mathematics', 1, 'math', 'unknown', 'unknown')
+  addCourse('Discrete Mathematics Seminar', 0.5, 'math', 'unknown', 'unknown')
+  addCourse('Mathematics and Art', 0.5, 'math', 'unknown', 'unknown')
+  addCourse('Computer Programming 1', 0.5, 'programming', 'unknown', 'unknown')
+  addCourse('Computer Programming 2', 0.5, 'programming', 'unknown', 'unknown')
+  addCourse('Computer Programming 2&3', 1, 'programming', 'unknown', 'unknown')
+  addCourse('Computer Programming 3', 0.5, 'programming', 'unknown', 'unknown')
+  addCourse('Computer Programming 4', 0.5, 'programming', 'unknown', 'unknown')
+  addCourse('Applied Engineering & Design', 0.5, 'programming', 'unknown', 'unknown')
+  addCourse('French 1', 1, 'language', 'unknown', 'unknown')
+  addCourse('French 1P', 1, 'language', 'unknown', 'unknown')
+  addCourse('French 2', 1, 'language', 'unknown', 'unknown')
+  addCourse('French 2 (Honors)', 1, 'language', 'unknown', 'unknown')
+  addCourse('French 3', 1, 'language', 'unknown', 'unknown')
+  addCourse('French 3 (Honors)', 1, 'language', 'unknown', 'unknown')
+  addCourse('French 4', 1, 'language', 'unknown', 'unknown')
+  addCourse('French 4 (AP)', 1, 'language', 'unknown', 'unknown')
+  addCourse('French 5 (Honors): A Further Exploration of Literature', 1, 'language', 'unknown', 'unknown')
+  addCourse('French 5: The Francophone World', 0.5, 'language', 'unknown', 'unknown')
+  addCourse('French 5: Twentieth-Century France Through Its Cinema', 0.5, 'language', 'unknown', 'unknown')
+  addCourse('French 6: Advanced Studies', 0.5, 'language', 'unknown', 'unknown')
+  addCourse('Spanish 1', 1, 'language', 'unknown', 'unknown')
+  addCourse('Spanish 1P', 1, 'language', 'unknown', 'unknown')
+  addCourse('Spanish 2', 1, 'language', 'unknown', 'unknown')
+  addCourse('Spanish 2 (Honors)', 1, 'language', 'unknown', 'unknown')
+  addCourse('Spanish 2/3 (Accelerated)', 1, 'language', 'unknown', 'unknown')
+  addCourse('Spanish 3', 1, 'language', 'unknown', 'unknown')
+  addCourse('Spanish 3 (Honors)', 1, 'language', 'unknown', 'unknown')
+  addCourse('Spanish 4: Topics in Hispanic Culture and Literature', 1, 'language', 'unknown', 'unknown')
+  addCourse('Spanish 4 (Honors)', 1, 'language', 'unknown', 'unknown')
+  addCourse('Spanish 5: Inside Latin America', 1, 'language', 'unknown', 'unknown')
+  addCourse('Spanish 5: Discovering El Caribe', 1, 'language', 'unknown', 'unknown')
+  addCourse('Spanish 5 (Honors)', 1, 'language', 'unknown', 'unknown')
+  addCourse('Advanced Topic in Spanish', 1, 'language', 'unknown', 'unknown')
+  addCourse('Chinese 1', 1, 'language', 'unknown', 'unknown')
+  addCourse('Chinese 1P', 1, 'language', 'unknown', 'unknown')
+  addCourse('Chinese 2', 1, 'language', 'unknown', 'unknown')
+  addCourse('Chinese 3', 1, 'language', 'unknown', 'unknown')
+  addCourse('Chinese 4', 1, 'language', 'unknown', 'unknown')
+  addCourse('Chinese 5', 1, 'language', 'unknown', 'unknown')
+  addCourse('Chinese 5 (Honors)', 1, 'language', 'unknown', 'unknown')
+  addCourse('Advanced Topics in Chinese', 0.5, 'language', 'unknown', 'unknown')
+  addCourse('Chinese Literature', 1, 'language', 'unknown', 'unknown')
+  addCourse('Chinese: Major Issues in 20th Century China', 1, 'language', 'unknown', 'unknown')
+  addCourse('Class IV Physics', 1, 'science', 'unknown', 'unknown')
+  addCourse('Physics', 1, 'english', 'science', 'unknown')
+  addCourse('Chemistry', 1, 'english', 'science', 'unknown')
+  addCourse('Chemistry (Honors)', 1, 'science', 'unknown', 'unknown')
+  addCourse('Biology', 1, 'english', 'science', 'unknown')
+  addCourse('Biology (Honors)', 1, 'science', 'unknown', 'unknown')
+  addCourse('Advanced Biology', 1, 'science', 'unknown', 'unknown')
+  addCourse('Advanced Chemistry', 1, 'science', 'unknown', 'unknown')
+  addCourse('Advanced Environmental science', 1, 'english', 'unknown', 'unknown')
+  addCourse('Advanced Physics', 1, 'science', 'unknown', 'unknown')
+  addCourse('Neuroscience', 1, 'science', 'unknown', 'unknown')
+  addCourse('Human Anatomy and Physiology', 0.5, 'science', 'unknown', 'unknown')
+  addCourse('Marine Science', 0.5, 'science', 'unknown', 'unknown')
+  addCourse('Obervational Astronomy', 0.5, 'science', 'unknown', 'unknown')
+  addCourse('Futorology: Rise of the Machine', 0.5, 'science', 'unknown', 'unknown')
+  addCourse('Molecular Genetics 1', 0.5, 'science', 'unknown', 'unknown')
+  addCourse('Nuclear Physics', 0.5, 'science', 'unknown', 'unknown')
+  addCourse('Organic Chemistry 1', 0.5, 'science', 'unknown', 'unknown')
+  addCourse('Cosmology and Modern Physics', 0.5, 'science', 'unknown', 'unknown')
+  addCourse('Issues in Environmental Science: Challenges for the Twenty-first Century', 0.5, 'science', 'unknown', 'unknown')
+  addCourse('Futorology: Future of Humanity', 0.5, 'science', 'unknown', 'unknown')
+  addCourse('Molecular Genetics 2', 0.5, 'science', 'unknown', 'unknown')
+  addCourse('Organic Chemistry 2', 0.5, 'science', 'unknown', 'unknown')
+  addCourse('Introduction to Aerodynamics', 0.5, 'science', 'unknown', 'unknown')
+  addCourse('Engineering the Future', 0.5, 'science', 'unknown', 'unknown')
+  addCourse('Geology', 0.5, 'science', 'unknown', 'unknown')
+  addCourse('Science in the Modern Age', 0.5, 'science', 'unknown', 'unknown')
+  addCourse('Class IV English', 1, 'english', 'unknown', 'unknown')
+  addCourse('Perspectives: Genre and Culture', 1, 'english', 'unknown', 'unknown')
+  addCourse('Founding Voices: Literature from the Ancient World through the Renaissance', 1, 'english', 'unknown', 'unknown')
+  addCourse('Performing Literature', 1, 'english', 'unknown', 'unknown')
+  addCourse('Seeing Literature', 1, 'english', 'unknown', 'unknown')
+  addCourse('Contemporary Literature in Context', 1, 'english', 'unknown', 'unknown')
+  addCourse('Literature and the Human Condition', 1, 'english', 'unknown', 'unknown')
+  addCourse('American Literature', 1, 'english', 'unknown', 'unknown')
+  addCourse('Man and the Natural World', 1, 'english', 'unknown', 'unknown')
+  addCourse('Studies in English and American Literature', 1, 'english', 'unknown', 'unknown')
+  addCourse('Reading Consciousness', 1, 'english', 'unknown', 'unknown')
+  addCourse('The Craft of Non-Fiction', 1, 'english', 'unknown', 'unknown')
+  addCourse('Fiction', 1, 'english', 'unknown', 'unknown')
+  addCourse('Literature and the Nature of Reality', 1, 'english', 'unknown', 'unknown')
+  addCourse('Modern Comparative Literature', 1, 'english', 'unknown', 'unknown')
+  addCourse('Philosophy and Literature', 1, 'english', 'unknown', 'unknown')
+  addCourse('Shakesphere', 1, 'english', 'unknown', 'unknown')
+  addCourse('Themes in Contemporary World Literature', 1, 'english', 'unknown', 'unknown')
+  addCourse('Three Writers in Depth', 1, 'english', 'unknown', 'unknown')
+  addCourse('We Are What We Read', 1, 'english', 'unknown', 'unknown')
+  addCourse('Hamlet', 0.5, 'english', 'unknown', 'unknown')
+  addCourse('Understanding Intersectionality', 0.5, 'english', 'unknown', 'unknown')
+  addCourse('Journalism', 0.5, 'english', 'unknown', 'unknown')
+  addCourse('The Power of Poetry through Close Reading and Analysis', 0.5, 'english', 'unknown', 'unknown')
+  addCourse('Project Story', 0.5, 'english', 'unknown', 'unknown')
+  addCourse('Creative Writing', 0.5, 'english', 'unknown', 'unknown')
+  addCourse('Advanced Creative Writing', 0.5, 'english', 'unknown', 'unknown')
+  addCourse('Advanced Creative Writing 2', 0.5, 'english', 'unknown', 'unknown')
+  addCourse('Exposition', 1, 'english', 'unknown', 'unknown')
+  addCourse('Ancient Civilizations', 1, 'history', 'unknown', 'unknown')
+  addCourse('Modern World History: Class IV', 1, 'history', 'unknown', 'unknown')
+  addCourse('Modern World History', 1, 'history', 'unknown', 'unknown')
+  addCourse('The United States in the Modern World 1&2', 1, 'history', 'unknown', 'unknown')
+  addCourse('United States History', 1, 'history', 'unknown', 'unknown')
+  addCourse('African-American History', 0.5, 'history', 'unknown', 'unknown')
+  addCourse('History of Modern China', 0.5, 'history', 'unknown', 'unknown')
+  addCourse('History of the Middle East', 0.5, 'history', 'unknown', 'unknown')
+  addCourse('Topics in Modern History', 0.5, 'history', 'unknown', 'unknown')
+  addCourse('Asian American History', 0.5, 'history', 'unknown', 'unknown')
+  addCourse('The Aztecs to High-Tech', 0.5, 'history', 'unknown', 'unknown')
+  addCourse('Globalization and Islam', 0.5, 'history', 'unknown', 'unknown')
+  addCourse('History of Civil Rights', 0.5, 'history', 'unknown', 'unknown')
+  addCourse('Advanced Government and Politics', 0.5, 'history', 'unknown', 'unknown')
+  addCourse('Comparative Government', 0.5, 'history', 'unknown', 'unknown')
+  addCourse('Principles of Economics', 0.5, 'history', 'unknown', 'unknown')
+  addCourse('Topics in Global Economics', 0.5, 'history', 'unknown', 'unknown')
+  addCourse('Behavioral-Economics', 0.5, 'history', 'unknown', 'unknown')
+  addCourse('Psycology Seminar', 1, 'history', 'unknown', 'unknown')
+  addCourse('Topics in Psycology', 0.5, 'history', 'unknown', 'unknown')
+  addCourse('Religions of the Middle East', 0.5, 'history', 'unknown', 'unknown')
+  addCourse('Religions of Asia', 0.5, 'history', 'unknown', 'unknown')
+  addCourse('Activism for Justice in a Digital World', 0.5, 'history', 'unknown', 'unknown')
+}
+
+function addReview(id, review){
+  const ref = db.ref('reviews/'+id)
   ref.once('value').then(function(snapshot){
     if(snapshot.val() == null){
-      ref.child(data.course).child('info').set({rating:data.rating, teacher:data.teacher, credit:data.credit, info:data.info})
+      ref.child('0').set(review)
     }
     else{
-      const updates = {}
-      updates['/' + data.course] = {rating:data.rating, teacher:data.teacher, credit:data.credit, infos:data.info}
-      ref.update(updates)
+      ref.child(snapshot.val().length).set(review)
     }
   })
 }
 
-
-addCourse({course:'Algebra 1 with Geometry', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Geometry', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Algebra 2', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Precalculus(Honors)', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Precalculus(Regular)', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Precalculus(Foundation)', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Calculus(Honors)', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Calculus(Regular)', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Calculus and Applied Economics (Honors)', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Calculus(Accelerated)', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Stats (Honors)', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Stats (Regular)', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Advanced Statistical Methods (Honors)', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Advanced Calculus and Mathematical Statistics Methods (Honors)', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Multivariable Calculus', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Abstract Algebra and Group Theory', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Advanced Topics in Mathematics', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Discrete Mathematics Seminar', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Mathematics and Art', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Computer Programming 1', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Computer Programming 2', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Computer Programming 2&3', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Computer Programming 3', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Computer Programming 4', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Applied Engineering & Design', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'French 1', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'French 1P', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'French 2', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'French 2 (Honors)', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'French 3', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'French 3 (Honors)', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'French 4', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'French 4 (AP)', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'French 5 (Honors): A Further Exploration of Literature', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'French 5: The Francophone World', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'French 5: Twentieth-Century France Through Its Cinema', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'French 6: Advanced Studies', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-
-
-addCourse({course:'Spanish 1', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Spanish 1P', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Spanish 2', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Spanish 2 (Honors)', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Spanish 2/3 (Accelerated)', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Spanish 3', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Spanish 3 (Honors)', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Spanish 4: Topics in Hispanic Culture and Literature', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Spanish 4 (Honors)', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Spanish 5: Inside Latin America', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Spanish 5: Discovering El Caribe', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Spanish 5 (Honors)', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Advanced Topic in Spanish', rating:null, teacher:'N/A', credit:1, info:'-'})
-
-
-addCourse({course:'Chinese 1', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Chinese 1P', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Chinese 2', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Chinese 3', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Chinese 4', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Chinese 5', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Chinese 5 (Honors)', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Advanced Topics in Chinese', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Chinese Literature', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Chinese: Major Issues in 20th Century China', rating:null, teacher:'N/A', credit:1, info:'-'})
-
-
-addCourse({course:'Class IV Physics', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Physics', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Chemistry', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Chemistry (Honors)', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Biology', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Biology (Honors)', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Advanced Biology', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Advanced Chemistry', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Advanced Environmental Science', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Advanced Physics', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Neuroscience', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Human Anatomy and Physiology', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Marine Science', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Obervational Astronomy', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Futorology: Rise of the Machine', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Molecular Genetics 1', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Nuclear Physics', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Organic Chemistry 1', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Cosmology and Modern Physics', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Issues in Environmental Science: Challenges for the Twenty-first Century', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Futorology: Future of Humanity', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Molecular Genetics 2', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Organic Chemistry 2', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Introduction to Aerodynamics', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Engineering the Future', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Geology', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Science in the Modern Age', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-
-
-addCourse({course:'Class IV English', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Perspectives: Genre and Culture', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Founding Voices: Literature from the Ancient World through the Renaissance', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Performing Literature', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Seeing Literature', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Contemporary Literature in Context', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Literature and the Human Condition', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'American Literature', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Man and the Natural World', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Studies in English and American Literature', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Reading Consciousness', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'The Craft of Non-Fiction', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Fiction', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Literature and the Nature of Reality', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Modern Comparative Literature', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Philosophy and Literature', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Shakesphere', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Themes in Contemporary World Literature', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Three Writers in Depth', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'We Are What We Read', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Hamlet', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Understanding Intersectionality', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Journalism', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'The Power of Poetry through Close Reading and Analysis', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Project Story', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Creative Writing', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Advanced Creative Writing', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Advanced Creative Writing 2', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Exposition', rating:null, teacher:'N/A', credit:1, info:'-'})
-
-
-addCourse({course:'Ancient Civilizations', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Modern World History: Class IV', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Modern World History', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'The United States in the Modern World 1&2', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'United States History', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'African-American History', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'History of Modern China', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'History of the Middle East', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Topics in Modern History', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Asian American History', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'The Aztecs to High-Tech', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Globalization and Islam', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'History of Civil Rights', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-
-addCourse({course:'Advancedf Government and Politics', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Comparative Government', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Principles of Economics', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Topics in Global Economics', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Behavioral-Economics', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Psycology Seminar', rating:null, teacher:'N/A', credit:1, info:'-'})
-addCourse({course:'Topics in Psycology', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Religions of the Middle East', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Religions of Asia', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-addCourse({course:'Activism for Justice in a Digital World', rating:null, teacher:'N/A', credit:0.5, info:'-'})
-
-
-
-
-addCourse({course:'precalc', rating:5, teacher:'precalc', credit:1, info:'testinfo'})
-addCourse({course:'calc', rating:5, teacher:'precalc', credit:1, info:'testinfo'})
-addCourse({course:'group', rating:5, teacher:'precalc', credit:1, info:'testinfo'})
-addCourse({course:'performing', rating:5, teacher:'precalc', credit:1, info:'testinfo'})
-addCourse({course:'reading consciousness', rating:5, teacher:'precalc', credit:1, info:'testinfo'})
-addCourse({course:'human condition', rating:5, teacher:'precalc', credit:1, info:'testinfo'})
-addCourse({course:'physics', rating:5, teacher:'precalc', credit:1, info:'testinfo'})
-addCourse({course:'biology', rating:5, teacher:'precalc', credit:1, info:'testinfo'})
-addCourse({course:'chemistry', rating:5, teacher:'precalc', credit:1, info:'testinfo'})
-addCourse({course:'ancient civilizations', rating:5, teacher:'precalc', credit:1, info:'testinfo'})
-addCourse({course:'us history', rating:5, teacher:'precalc', credit:1, info:'testinfo'})
-addCourse({course:'us in the modern world', rating:5, teacher:'precalc', credit:1, info:'testinfo'})
-addCourse({course:'drawing', rating:5, teacher:'precalc', credit:1, info:'testinfo'})
-addCourse({course:'sculpture', rating:5, teacher:'precalc', credit:1, info:'testinfo'})
-addCourse({course:'photography', rating:5, teacher:'precalc', credit:1, info:'testinfo'})
-
-function addReview(data){
-  const ref = db.ref('courses/'+data.course+'/reviews')
+function addRating(id, rating){
+  const ref = db.ref('ratings/'+id)
   ref.once('value').then(function(snapshot){
     if(snapshot.val() == null){
-      console.log('hello')
-      ref.child('0').set(data.review)
+      ref.child('rating').set(rating)
+      ref.child('numberOfRatings').set(1)
     }
     else{
-      ref.child(snapshot.val().length).set(data.review)
+      ref.child('numberOfRatings').set(2)
+      ref.child('rating').set(rating+1)
     }
   })
 }
-addReview({course:'human condition', review:'very good'})
+addRating("sfldfk", 5)
 
-//add callback here
-function getCourses(){
-  const ref = db.ref('subjects')
-  ref.once('value').then(function(snapshot){
-    for (var key in snapshot.val()) {
-      console.log(snapshot.val()[key])
-    }
-    //Scallback(snapshot.val())
-  })
-}
-getCourses();
+//addAllCourses();
+//addReview('testid', 'very good')
+
+
 function updateRating(rating, course){
-  const ref = db.ref('courses/'+course)
+  const ref = db.ref('courses/'+course+'/info')
+  ref.child('0').set(data.review)
   ref.once('value').then(function(snapshot){
     if(snapshot.val().length == 0){
-      updates['/' + rating] = data.id;
+      updates['/' + rating] = rating;
       ref.update(updates)
     }
-    })
+    else{
+
+    }
+  })
 }
