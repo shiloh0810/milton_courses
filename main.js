@@ -8,6 +8,7 @@ firebase.initializeApp({
 });
 
 const db = firebase.database()
+window.currentCourse;
 
 function addCourse(name, credit, subject, teacher, description) {
   const ref = db.ref('courses')
@@ -82,14 +83,14 @@ function addAllCourses() {
   addCourse('Chinese Literature', 1, 'language', 'unknown', 'unknown')
   addCourse('Chinese: Major Issues in 20th Century China', 1, 'language', 'unknown', 'unknown')
   addCourse('Class IV Physics', 1, 'science', 'unknown', 'unknown')
-  addCourse('Physics', 1, 'english', 'science', 'unknown')
-  addCourse('Chemistry', 1, 'english', 'science', 'unknown')
+  addCourse('Physics', 1, 'science', 'unknown', 'unknown')
+  addCourse('Chemistry', 1, 'science', 'unknown', 'unknown')
   addCourse('Chemistry (Honors)', 1, 'science', 'unknown', 'unknown')
-  addCourse('Biology', 1, 'english', 'science', 'unknown')
+  addCourse('Biology', 1, 'science', 'unknown', 'unknown')
   addCourse('Biology (Honors)', 1, 'science', 'unknown', 'unknown')
   addCourse('Advanced Biology', 1, 'science', 'unknown', 'unknown')
   addCourse('Advanced Chemistry', 1, 'science', 'unknown', 'unknown')
-  addCourse('Advanced Environmental science', 1, 'english', 'unknown', 'unknown')
+  addCourse('Advanced Environmental science', 1, 'science', 'unknown', 'unknown')
   addCourse('Advanced Physics', 1, 'science', 'unknown', 'unknown')
   addCourse('Neuroscience', 1, 'science', 'unknown', 'unknown')
   addCourse('Human Anatomy and Physiology', 0.5, 'science', 'unknown', 'unknown')
@@ -162,16 +163,9 @@ function addAllCourses() {
   addCourse('Activism for Justice in a Digital World', 0.5, 'history', 'unknown', 'unknown')
 }
 
-function addReview(id, review){
-  const ref = db.ref('reviews/'+id)
-  ref.once('value').then(function(snapshot){
-    if(snapshot.val() == null){
-      ref.child('0').set(review)
-    }
-    else{
-      ref.child(snapshot.val().length).set(review)
-    }
-  })
+function addReview(cid, text) {
+  const ref = db.ref('reviews/' + cid)
+  ref.push(text)
 }
 
 function getCourses(callback) {
@@ -183,6 +177,13 @@ function getCourses(callback) {
 
 function getCourse(cid, callback) {
   const ref = db.ref('courses/' + cid)
+  ref.once('value').then(function(snapshot) {
+    callback(snapshot.val())
+  })
+}
+
+function getReviews(cid, callback) {
+  const ref = db.ref('reviews/' + cid)
   ref.once('value').then(function(snapshot) {
     callback(snapshot.val())
   })
@@ -209,15 +210,34 @@ $(() => {
   getCourses((courses) => {
     for (let cid in courses) {
       const subjectElement = $(`#${courses[cid].subject}`);
-      const courseElement = $(`<li><a class="class-link" href="#${cid}">` + courses[cid].name + '</a></li>')
+      const courseElement = $(`<li><a class="course-link" href="#${cid}">` + courses[cid].name + '</a></li>')
       subjectElement.append(courseElement)
     }
 
-    $('.class-link').click((e) => {
+    $('.course-link').click((e) => {
       const cid = e.target.href.substring(e.target.href.lastIndexOf('#') + 1);
+
+      $('#reviewsContainer').text('')
+
       getCourse(cid, (course) => {
-        console.log(course.description)
+        window.currentCourse = cid
+        $('#courseName').text(course.name)
+      })
+
+      getReviews(cid, (reviews) => {
+        for (let rid in reviews) {
+          const reviewsContainer = $('#reviewsContainer')
+          const reviewElement = $(`<p>${reviews[rid]}</p>`)
+          reviewsContainer.append(reviewElement)
+        }
       })
     })
+
+    $('#reviewForm').submit((e) => {
+      e.preventDefault()
+      const reviewText = $('.form-control[name=review_text]').val()
+      addReview(window.currentCourse, reviewText)
+    })
+
   });
 })
